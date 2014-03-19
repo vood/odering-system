@@ -4,6 +4,10 @@ namespace vood\OrderingSystem\Model;
 
 use vood\OrderingSystem\DB;
 
+/**
+ * Class Factory
+ * @package vood\OrderingSystem\Model
+ */
 class Factory {
 
     private $db;
@@ -13,6 +17,9 @@ class Factory {
       'product' => 'Product'
     );
 
+    /**
+     * @param DB $db
+     */
     public function __construct(DB $db) {
         $this->db = $db;
     }

@@ -2,6 +2,10 @@
 
 namespace vood\OrderingSystem\Model;
 
+/**
+ * Class Product
+ * @package vood\OrderingSystem\Model
+ */
 class Product extends ModelAbstract
 {
     const TABLE_NAME = 'products';
@@ -16,12 +20,21 @@ class Product extends ModelAbstract
         'value' => \PDO::PARAM_INT,
     );
 
+    /**
+     * @param array $params
+     * @return int|void
+     */
     public function create($params = array())
     {
         $sql = "INSERT INTO products (name, description, width, height, length, value) VALUES (:name, :description, :width, :height, :length, :value)";
         $this->query($sql, $params);
     }
 
+    /**
+     * @param $id
+     * @param array $params
+     * @return array|bool
+     */
     public function update($id, $params = array())
     {
         $sql = "UPDATE products SET

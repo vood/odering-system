@@ -2,6 +2,10 @@
 
 namespace vood\OrderingSystem\Model;
 
+/**
+ * Class Order
+ * @package vood\OrderingSystem\Model
+ */
 class Order extends ModelAbstract {
 
     const TABLE_NAME = 'orders';
@@ -19,11 +23,20 @@ class Order extends ModelAbstract {
     );
 
 
+    /**
+     * @param array $params
+     * @return array|int
+     */
     public function create($params = array()) {
         $sql = "INSERT INTO orders (recipient_name, street_address, state, zip, phone, quantity, product_id, city) VALUES (:recipient_name, :street_address, :state, :zip, :phone, :quantity, :product_id, :city)";
         return $this->query($sql, $params);
     }
 
+    /**
+     * @param $id
+     * @param array $params
+     * @return array|bool
+     */
     public function update($id, $params = array()) {
         $sql = "
         UPDATE orders SET
@@ -39,6 +52,10 @@ class Order extends ModelAbstract {
         return $this->query($sql, $params);
     }
 
+    /**
+     * @param array $filter
+     * @return array
+     */
     public function select($filter = array()) {
         $sql = "SELECT o.*, p.name as product_name from orders o inner join products p on o.product_id = p.id";
         return $this->query($sql);

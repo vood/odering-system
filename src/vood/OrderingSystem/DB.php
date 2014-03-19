@@ -2,12 +2,20 @@
 
 namespace vood\OrderingSystem;
 
+/**
+ * Class DB
+ * @package vood\OrderingSystem
+ */
 class DB
 {
     private static $instance;
 
     private $dbh;
 
+    /**
+     * @param array $config
+     * @return static
+     */
     public static function getInstance($config = array())
     {
         if (!self::$instance) {
@@ -16,17 +24,25 @@ class DB
         return self::$instance;
     }
 
+    /**
+     * singletone implementation
+     */
     private function __clone()
     {
 
     }
 
+    /**
+     * singletone implementation
+     */
     private function __wakeup()
     {
 
     }
 
-
+    /**
+     * @param $config
+     */
     private function __construct($config)
     {
         $options = array(
@@ -37,6 +53,13 @@ class DB
     }
 
 
+    /**
+     * @param $query
+     * @param array $params
+     * @param array $types
+     * @return array
+     * @throws \PDOException
+     */
     public function query($query, $params = array(), $types = array())
     {
         $stmt = $this->dbh->prepare($query);

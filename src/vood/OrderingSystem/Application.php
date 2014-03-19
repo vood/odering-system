@@ -4,8 +4,15 @@ namespace vood\OrderingSystem;
 
 use vood\OrderingSystem\Model\Factory;
 
+/**
+ * Class Application
+ * @package vood\OrderingSystem
+ */
 class Application extends \Slim\Slim {
 
+    /**
+     * @param array $settings
+     */
     public function __construct($settings = array()) {
         parent::__construct($settings);
 
@@ -15,6 +22,9 @@ class Application extends \Slim\Slim {
         $this->registerActions();
     }
 
+    /**
+     * Maps routes to actions
+     */
     public function registerActions() {
 
         $app = $this;
