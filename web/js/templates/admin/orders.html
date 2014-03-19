@@ -1,0 +1,147 @@
+<div class="row" ng-controller="AdminOrdersCtrl">
+    <div class="col-md-12" ng-include="'js/templates/admin/alerts.html'"></div>
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Recipient Name</th>
+                <th>Product</th>
+                <th>Street Address</th>
+                <th>City</th>
+                <th>Zip</th>
+                <th>State</th>
+                <th>Phone</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="order in orders">
+                <td>{{order.recipient_name}}</td>
+                <td>{{order.product_name}}</td>
+                <td>{{order.street_address}}</td>
+                <td>{{order.city}}</td>
+                <td>{{order.zip}}</td>
+                <td>{{order.state}}</td>
+                <td>{{order.phone}}</td>
+                <td>{{order.quantity}}</td>
+                <td style="width: 150px">
+                    <a class="btn btn-info btn-sm" ng-click="showForm(order)">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" ng-click="delete($index)">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Edit "{{currentOrder.product_name}}" Order #{{currentOrder.id}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="form" role="form" novalidate>
+                        <div class="form-group">
+                            <label for="recipient_name">Recipient Name</label>
+                            <input ng-model="currentOrder.recipient_name" type="text" class="form-control" id="recipient_name"
+                                   required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="street_address">Street Address</label>
+                            <input ng-model="currentOrder.street_address" class="form-control" id="street_address"
+                                      required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input required ng-model="currentOrder.city" type="text" class="form-control"
+                                   id="city" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zip</label>
+                            <input integer required ng-model="currentOrder.zip" type="text"
+                                   class="form-control" id="zip" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select class="form-control" id="state" required name="state" ng-model="currentOrder.state">
+                                <option value="">Select State</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input required ng-model="currentOrder.phone" type="text" class="form-control"
+                                   id="phone" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input integer required ng-model="currentOrder.quantity" type="text" class="form-control"
+                                   id="quantity" placeholder="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button ng-disabled="form.$invalid" ng-if="currentOrder.id" type="button"
+                            class="btn btn-primary" ng-click="save()">Edit Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

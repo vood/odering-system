@@ -1,0 +1,89 @@
+<div class="row" ng-controller="AdminProductsCtrl">
+    <div class="col-md-12" ng-include="'js/templates/admin/alerts.html'"></div>
+    <div class="col-md-12">
+        <a style="float: right; margin-right: 10px" class="btn btn-success btn-sm" ng-click="showForm()"><span
+                class="glyphicon glyphicon-plus"></span> Add Product</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th> Name</th>
+                <th style="max-width: 400px"> Description</th>
+                <th> W&times;H&times;L, inches</th>
+                <th> Value, USD</th>
+                <th> Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in products">
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.height}}&times;{{product.width}}&times;{{product.length}}</td>
+                <td>{{product.value}}</td>
+                <td style="width: 150px">
+                    <a class="btn btn-info btn-sm" ng-click="showForm(product)">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" ng-click="delete($index)">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 ng-if="!currentProduct.id" class="modal-title">Create Product</h4>
+                    <h4 ng-if="currentProduct.id" class="modal-title">Edit Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="form" ng-model="currentProduct.currentProduct" role="form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input ng-model="currentProduct.name" type="text" class="form-control" id="name"
+                                   required placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea ng-model="currentProduct.description" class="form-control" id="description"
+                                      required placeholder=""></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="width">Width</label>
+                            <input integer required ng-model="currentProduct.width" type="text" class="form-control"
+                                   id="width" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height</label>
+                            <input integer required ng-model="currentProduct.height" type="text"
+                                   class="form-control" id="height" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="length">Length</label>
+                            <input integer required ng-model="currentProduct.length" type="text"
+                                   class="form-control" id="length">
+                        </div>
+                        <div class="form-group">
+                            <label for="value">Value</label>
+                            <input integer required ng-model="currentProduct.value" type="text" class="form-control"
+                                   id="value" placeholder="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button ng-disabled="form.$invalid" ng-if="!currentProduct.id" type="button"
+                            class="btn btn-primary" ng-click="save()">Create Product
+                    </button>
+                    <button ng-disabled="form.$invalid" ng-if="currentProduct.id" type="button"
+                            class="btn btn-primary" ng-click="save()">Edit Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

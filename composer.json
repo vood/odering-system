@@ -1,0 +1,19 @@
+{
+    "name": "vood/ordering-system",
+    "description": "A simple ordering system",
+    "minimum-stability": "beta",
+    "authors": [
+        {
+            "name": "Artem Vysotsky",
+            "email": "artem.vysotsky@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "vood\\": "src/vood/"
+        }
+    }
+}
