@@ -3,11 +3,11 @@ Ordering System
 
 Demo Server (Front end)
 -----------------------
-http://radiant-shore-3523.herokuapp.com/
+http://ordering-system-demo.herokuapp.com/
 
 Admin Panel
 -----------
-http://radiant-shore-3523.herokuapp.com/web/admin.html
+http://ordering-system-demo.herokuapp.com/web/admin.html
 
 Technical Details
 -----------------
